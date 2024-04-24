@@ -41,6 +41,7 @@ open class ArticleFullWidthImageCollectionViewCell: ArticleCollectionViewCell {
         super.setup()
         descriptionLabel.numberOfLines = 2
         titleLabel.numberOfLines = 0
+        titleLabel.accessibilityIdentifier = Identifier.title.rawValue
         
         saveButton.isOpaque = true
         
@@ -95,11 +96,12 @@ open class ArticleFullWidthImageCollectionViewCell: ArticleCollectionViewCell {
     
     open override func updateAccessibilityElements() {
         super.updateAccessibilityElements()
+        var updatedAccessibilityElements = accessibilityElements ?? []
         if !isSaveButtonHidden {
-            var updatedAccessibilityElements = accessibilityElements ?? []
             updatedAccessibilityElements.append(saveButton)
-            accessibilityElements = updatedAccessibilityElements
         }
+        updatedAccessibilityElements.append(titleLabel)
+        accessibilityElements = updatedAccessibilityElements
     }
     
     open override func sizeThatFits(_ size: CGSize, apply: Bool) -> CGSize {
@@ -147,6 +149,10 @@ open class ArticleFullWidthImageCollectionViewCell: ArticleCollectionViewCell {
         
         origin.y += layoutMargins.bottom
         return CGSize(width: size.width, height: origin.y)
+    }
+    
+    enum Identifier : String {
+        case title = "article-full-width-image-cv-cell-title"
     }
 }
 

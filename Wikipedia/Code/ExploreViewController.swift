@@ -17,7 +17,10 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutManager.register(ExploreCardCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCardCollectionViewCell.identifier, addPlaceholder: true)
-
+        
+        // Set the accessibility identifier for the parent view in the viewcontroller
+        view.accessibilityIdentifier = Identifiers.mainView.rawValue
+        
         navigationItem.titleView = titleView
         navigationBar.addUnderNavigationBarView(searchBarContainerView)
         navigationBar.isUnderBarViewHidingEnabled = true
@@ -136,7 +139,10 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
         
         let settingsBarButtonItem = UIBarButtonItem(image: BarButtonImageStyle.settingsButtonImage(theme: theme), style: .plain, target: self, action: #selector(userDidTapSettings))
         settingsBarButtonItem.accessibilityLabel = CommonStrings.settingsTitle
+        settingsBarButtonItem.accessibilityIdentifier = Identifiers.settings.rawValue
+        settingsBarButtonItem.isAccessibilityElement = true
         navigationItem.rightBarButtonItem = settingsBarButtonItem
+        
         navigationBar.updateNavigationItems()
     }
     
@@ -1175,5 +1181,9 @@ extension ExploreViewController: WKImageRecommendationsDelegate {
         UIApplication.shared.open(mailtoURL)
     }
 
+    // The identifiers to be used inside tje ExploreViewController
+    enum Identifiers : String {
+        case settings = "settings-button-bar", mainView = "explore-main-view"
+    }
 }
 

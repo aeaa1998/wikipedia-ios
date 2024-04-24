@@ -81,6 +81,7 @@ class ArticleToolbarController: Themeable {
     
     lazy var moreButton: IconBarButtonItem = {
         let item = createMoreButton()
+        item.isAccessibilityElement = true
         item.accessibilityLabel = CommonStrings.moreButton
         item.accessibilityHint = CommonStrings.userMenuButtonAccesibilityText
         return item
@@ -104,7 +105,9 @@ class ArticleToolbarController: Themeable {
             actions.append(UIAction(title: CommonStrings.unwatch, image: UIImage(systemName: "star.fill"), handler: { [weak self] _ in self?.tappedUnwatch()}))
         }
 
-        actions.append(UIAction(title: CommonStrings.shortShareTitle, image: UIImage(systemName: "square.and.arrow.up"), handler: { [weak self] _ in self?.share()}))
+        let shareAction = UIAction(title: CommonStrings.shortShareTitle, image: UIImage(systemName: "square.and.arrow.up"), handler: { [weak self] _ in self?.share()})
+        shareAction.accessibilityIdentifier = Identifier.contextShareAction.rawValue
+        actions.append(shareAction)
         
         let menu = UIMenu(title: "", options: .displayInline, children: actions)
         
@@ -113,6 +116,8 @@ class ArticleToolbarController: Themeable {
         let item = IconBarButtonItem(image: moreImage, menu: menu)
 
         item.accessibilityLabel = CommonStrings.moreButton
+        item.accessibilityIdentifier = Identifier.moreButton.rawValue
+        
         return item
     }
     
@@ -268,6 +273,10 @@ class ArticleToolbarController: Themeable {
 
     func setToolbarButtons(enabled: Bool) {
         toolbar.items?.forEach { $0.isEnabled = enabled }
+    }
+    
+    enum Identifier : String {
+        case moreButton = "article-toolbar-more-button", contextShareAction = "article-context-share-button"
     }
 
 }

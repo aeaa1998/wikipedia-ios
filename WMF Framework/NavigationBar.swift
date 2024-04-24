@@ -279,6 +279,8 @@ public class NavigationBar: SetupView, FakeProgressReceiving, FakeProgressDelega
         barButtonItem.isEnabled = item.isEnabled
         barButtonItem.isAccessibilityElement = item.isAccessibilityElement
         barButtonItem.accessibilityLabel = item.accessibilityLabel
+        barButtonItem.accessibilityIdentifier = item.accessibilityIdentifier
+        barButtonItem.isAccessibilityElement = item.isAccessibilityElement
         return barButtonItem
     }
     

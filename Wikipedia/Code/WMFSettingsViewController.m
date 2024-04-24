@@ -106,6 +106,7 @@ static NSString *const WMFSettingsURLDonation = @"https://donate.wikimedia.org/?
         // Always show close button if presented modally
         UIBarButtonItem *xButton = [UIBarButtonItem wmf_buttonType:WMFButtonTypeX target:self action:@selector(closeButtonPressed)];
         xButton.accessibilityLabel = [WMFCommonStrings closeButtonAccessibilityLabel];
+        xButton.accessibilityIdentifier = @"close-settings-button";
         self.navigationItem.leftBarButtonItem = xButton;
     } else {
 
@@ -139,7 +140,7 @@ static NSString *const WMFSettingsURLDonation = @"https://donate.wikimedia.org/?
 
     NSArray *menuItems = [self.sections[indexPath.section] getItems];
     WMFSettingsMenuItem *menuItem = menuItems[indexPath.item];
-
+    cell.accessibilityIdentifier = [NSString stringWithFormat:@"WMFSettingsTableViewCell_%lu", (unsigned long)menuItem.type];
     cell.tag = menuItem.type;
     cell.title = menuItem.title;
     [cell applyTheme:self.theme];
@@ -409,6 +410,10 @@ static NSString *const WMFSettingsURLDonation = @"https://donate.wikimedia.org/?
 }
 
 - (void)logout {
+    // If it is appetize then lets not show this dialog
+    if ([[AppetizeConfigurationManager shared] getIsAppetize]) {
+        return;
+    }
     [self wmf_showKeepSavedArticlesOnDevicePanelIfNeededTriggeredBy:KeepSavedArticlesTriggerLogout
                                                               theme:self.theme
                                                          completion:^{

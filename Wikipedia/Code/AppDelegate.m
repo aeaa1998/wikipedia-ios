@@ -63,6 +63,9 @@ static NSString *const WMFBackgroundDatabaseHousekeeperTaskIdentifier = @"org.wi
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Start with the user defaults of the application
+    [[AppetizeConfigurationManager shared] startWith:[NSUserDefaults standardUserDefaults]];
+    
     [self registerBackgroundTasksForApplication:application];
 
 #if DEBUG

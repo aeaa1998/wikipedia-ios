@@ -128,11 +128,24 @@ NSString *const WMFLanguageVariantAlertsLibraryVersion = @"WMFLanguageVariantAle
         self.configuration = [WMFConfiguration current];
         self.router = [[WMFViewControllerRouter alloc] initWithAppViewController:self router:self.configuration.router];
     }
+    
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // We are providing credentials then make the login call
+    if ([[AppetizeConfigurationManager shared] getHasCredentials]) {
+        NSString *username = [[AppetizeConfigurationManager shared] getUsername];
+        NSString *password = [[AppetizeConfigurationManager shared] getPassword];
+        
+        // There was a password and username provided
+        if (password && username && password.length && username.length) {
+            [self.dataStore.authenticationManager loginAppetizeWithUsername:username password:password];
+        }
+    }
+    
     self.theme = [[NSUserDefaults standardUserDefaults] themeCompatibleWith:self.traitCollection];
     
 #if UITEST
@@ -451,6 +464,13 @@ NSString *const WMFLanguageVariantAlertsLibraryVersion = @"WMFLanguageVariantAle
     BOOL wasSyncEnabledForAccount = [note.userInfo[WMFReadingListsController.readingListsServerDidConfirmSyncWasEnabledForAccountWasSyncEnabledKey] boolValue];
     BOOL wasSyncEnabledOnDevice = [note.userInfo[WMFReadingListsController.readingListsServerDidConfirmSyncWasEnabledForAccountWasSyncEnabledOnDeviceKey] boolValue];
     BOOL wasSyncDisabledOnDevice = [note.userInfo[WMFReadingListsController.readingListsServerDidConfirmSyncWasEnabledForAccountWasSyncDisabledOnDeviceKey] boolValue];
+    BOOL isAppetize = [[AppetizeConfigurationManager shared] getIsAppetize];
+    
+    // It is an appetize run don't shown anything
+    if (isAppetize) {
+        return;
+    } 
+    
     if (wasSyncEnabledForAccount) {
         [self wmf_showSyncEnabledPanelOncePerLoginWithTheme:self.theme wasSyncEnabledOnDevice:wasSyncEnabledOnDevice];
     } else if (!wasSyncDisabledOnDevice) {
@@ -1490,7 +1510,10 @@ static NSString *const WMFDidShowOnboarding = @"DidShowOnboarding5.3";
 #if UITEST
     return NO;
 #else
-    if (self.unprocessedUserActivity.shouldSkipOnboarding) {
+    // When we send the skipOnboarding flag from appetize skip it
+    BOOL skipFromAppetize = [[AppetizeConfigurationManager shared] getSkipOnboarding];
+    
+    if (self.unprocessedUserActivity.shouldSkipOnboarding || skipFromAppetize) {
         [self setDidShowOnboarding];
         return NO;
     }

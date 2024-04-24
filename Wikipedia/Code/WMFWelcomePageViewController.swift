@@ -147,6 +147,7 @@ class WMFWelcomePageViewController: UIPageViewController, UIPageViewControllerDa
         skipButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         skipButton.titleLabel?.numberOfLines = 1
         skipButton.setTitle(CommonStrings.skipTitle, for: .normal)
+        skipButton.accessibilityIdentifier = Identifiers.skipWelcome.rawValue
         view.addSubview(skipButton)
         skipButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         view.addConstraint(NSLayoutConstraint(item: skipButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
@@ -234,4 +235,9 @@ class WMFWelcomePageViewController: UIPageViewController, UIPageViewControllerDa
             self.pageControl?.alpha = newAlpha
         }, completion: nil)
     }
+    
+    enum Identifiers : String {
+        case skipWelcome
+    }
+
 }

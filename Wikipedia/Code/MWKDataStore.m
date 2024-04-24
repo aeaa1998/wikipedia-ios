@@ -5,7 +5,7 @@
 @import CoreData;
 
 // Emitted when article state changes. Can be used for things such as being notified when article 'saved' state changes.
-NSString *const WMFArticleUpdatedNotification = @"WMFArticleUpdatedNotification";
+NSString *const WMFArticleUpdatedNotification = @"WMFArticleUpdatedNotification"; 
 NSString *const WMFArticleDeletedNotification = @"WMFArticleDeletedNotification";
 NSString *const WMFArticleDeletedNotificationUserInfoArticleKeyKey = @"WMFArticleDeletedNotificationUserInfoArticleKeyKey";
 NSString *const WMFBackgroundContextDidSave = @"WMFBackgroundContextDidSave";

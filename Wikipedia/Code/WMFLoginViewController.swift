@@ -64,11 +64,17 @@ class WMFLoginViewController: WMFScrollViewController, UITextFieldDelegate, WMFC
         forgotPasswordButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(forgotPasswordButtonPushed(_:))))
 
         usernameField.placeholder = WMFLocalizedString("field-username-placeholder", value:"enter username", comment:"Placeholder text shown inside username field until user taps on it")
+        usernameField.accessibilityIdentifier = Identifiers.usernameField.rawValue
+        
         passwordField.placeholder = WMFLocalizedString("field-password-placeholder", value:"enter password", comment:"Placeholder text shown inside password field until user taps on it")
+        passwordField.accessibilityIdentifier = Identifiers.passwordField.rawValue
 
         titleLabel.text = WMFLocalizedString("login-title", value:"Log in to your account", comment:"Title for log in interface")
+        
         usernameTitleLabel.text = WMFLocalizedString("field-username-title", value:"Username", comment:"Title for username field {{Identical|Username}}")
         passwordTitleLabel.text = WMFLocalizedString("field-password-title", value:"Password", comment:"Title for password field {{Identical|Password}}")
+        
+        loginButton.accessibilityIdentifier = Identifiers.loginButton.rawValue
     
         view.wmf_configureSubviewsForDynamicType()
         
@@ -171,6 +177,12 @@ class WMFLoginViewController: WMFScrollViewController, UITextFieldDelegate, WMFC
                 self.loginSuccessCompletion?()
                 self.setViewControllerUserInteraction(enabled: true)
                 self.dismiss(animated: true)
+                
+                // It is a run from appetize let's clean it so the dialog of save password won
+                if AppetizeConfigurationManager.shared.getIsAppetize() {
+                    self.passwordField.text = nil
+                    self.usernameField.text = nil
+                }
 
                 if let start = self.startDate {
                     LoginFunnel.shared.logSuccess(category: self.category, timeElapsed: fabs(start.timeIntervalSinceNow))
@@ -356,5 +368,9 @@ class WMFLoginViewController: WMFScrollViewController, UITextFieldDelegate, WMFC
         passwordAlertLabel.textColor = theme.colors.error
         scrollContainer.backgroundColor = theme.colors.paperBackground
         captchaViewController?.apply(theme: theme)
+    }
+    
+    enum Identifiers : String {
+        case usernameField = "username-login-input", passwordField = "password-login-input", loginButton = "login-button"
     }
 }

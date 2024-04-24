@@ -321,6 +321,7 @@
 		00FCCBCF2900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCCBCE2900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift */; };
 		00FCCBD02900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCCBCE2900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift */; };
 		00FCCBD12900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCCBCE2900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift */; };
+		0376B4A12BD87D110000876D /* AppetizeConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0376B4A02BD87D110000876D /* AppetizeConfigurationManager.swift */; };
 		041EFC371996A1F800B2CB28 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041EFC361996A1F800B2CB28 /* MapKit.framework */; };
 		0E281A331DC263DE00FA1AB1 /* WMFLegacyReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E281A321DC263DE00FA1AB1 /* WMFLegacyReference.swift */; };
 		0E36C2271AE0B59D00C58CFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4991453181D51DE00E6073C /* Images.xcassets */; };
@@ -3150,6 +3151,7 @@
 		00FCCBC4290082C200C9ECD2 /* TalkPageFindInPageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPageFindInPageState.swift; sourceTree = "<group>"; };
 		00FCCBC92900848300C9ECD2 /* TalkPageViewController+FindInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TalkPageViewController+FindInPage.swift"; sourceTree = "<group>"; };
 		00FCCBCE2900A6C500C9ECD2 /* NSMutableAttributedString+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Highlight.swift"; sourceTree = "<group>"; };
+		0376B4A02BD87D110000876D /* AppetizeConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppetizeConfigurationManager.swift; sourceTree = "<group>"; };
 		040E5C4E184566F4007AFE6F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		041EFC361996A1F800B2CB28 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0E10C4FD1C81046300CEB5C2 /* Wikipedia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wikipedia.entitlements; sourceTree = "<group>"; };
@@ -8570,6 +8572,7 @@
 				0015712B27D92F6B00F1EB26 /* RetryBlockTask.swift */,
 				67FF9C6A28076ADA000963D1 /* NSError+Utilities.swift */,
 				67A7CA7428665CEF008D4BF6 /* HTTPStatusCode.swift */,
+				0376B4A02BD87D110000876D /* AppetizeConfigurationManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -9488,8 +9491,6 @@
 				67DCB7A2278F8D700041272C /* InfoPlist.strings in Resources */,
 				6771C9562509FE6B00A7254B /* ArticleAsLivingDocHeaderView.xib in Resources */,
 				83E3E72B2440F24300AA2E9A /* LoadingAnimationViewController.xib in Resources */,
-				7ADF498D21B45E42009EA338 /* TextFormattingGroupedToolbarView.xib in Resources */,
-				7A25367D21B5AA4F00F841A1 /* ContextualHighlightEditToolbarView.xib in Resources */,
 				0067E51F2BAA21AA00AF0960 /* PrivacyInfo.xcprivacy in Resources */,
 				D8CE266B1E698E2400DAE2E0 /* NotificationBackgroundWarning@2x.png in Resources */,
 				B0EFCD691EBEC2F7008F36E5 /* LibrariesUsed.storyboard in Resources */,
@@ -9606,8 +9607,6 @@
 				67DCB7A1278F8D6F0041272C /* InfoPlist.strings in Resources */,
 				6771C9552509FE6B00A7254B /* ArticleAsLivingDocHeaderView.xib in Resources */,
 				83E3E72C2440F24300AA2E9A /* LoadingAnimationViewController.xib in Resources */,
-				7ADF498E21B45E42009EA338 /* TextFormattingGroupedToolbarView.xib in Resources */,
-				7A25367E21B5AA4F00F841A1 /* ContextualHighlightEditToolbarView.xib in Resources */,
 				0067E51E2BAA21AA00AF0960 /* PrivacyInfo.xcprivacy in Resources */,
 				D8EC3F6B1E9BDA35006712EB /* NotificationBackgroundWarning@2x.png in Resources */,
 				B0EFCD6A1EBEC2F8008F36E5 /* LibrariesUsed.storyboard in Resources */,
@@ -10395,7 +10394,6 @@
 				00E5B39F28EB8E2100D2C51A /* TalkPageTopicReplyOnboardingView.swift in Sources */,
 				6782DBC12343FDCA003FA21B /* DiffListChangeCell.swift in Sources */,
 				673DE3122BAE2C9400E4D431 /* WKProject+Extensions.swift in Sources */,
-				7A32078821E40193009E1677 /* SectionEditorMenuItemsController.swift in Sources */,
 				00AA5AA7276BF29E005295B0 /* StatusTextBarButtonItem.swift in Sources */,
 				67D9D1F02970D88E00BFCD4F /* DisclosureButton.swift in Sources */,
 				B04C444B1E56966B00C6DFB0 /* Array<UITextField>+WMFAllFieldsFilled.swift in Sources */,
@@ -10802,6 +10800,7 @@
 				67E5DA6B276416A600CE827D /* RemoteNotificationsRefreshCrossWikiOperation.swift in Sources */,
 				7A3AD05820ADB1A900C92E04 /* WMFAuthenticationManager.swift in Sources */,
 				D87F1D3D1EC0ACC400575CF8 /* AsyncOperation.swift in Sources */,
+				0376B4A12BD87D110000876D /* AppetizeConfigurationManager.swift in Sources */,
 				00D9B10729C8E680008A01E0 /* WidgetContentURL.swift in Sources */,
 				D8650B7C20350FEE0044DFFA /* NSString+SHA256.m in Sources */,
 				D8FA18BA1E1BD891009675C3 /* NSDate+WMFRelativeDate.m in Sources */,
@@ -11011,8 +11010,6 @@
 				7A20AE092057F39C005FB5DF /* UIView+Identifier.swift in Sources */,
 				D8E27BA21F82B38100F9D2B3 /* RMessageView.m in Sources */,
 				D8B1668D1FD97FE000097D8B /* WMFViewController.m in Sources */,
-				832BD3BE28996B68002623CA /* VanishAccountContentView.swift in Sources */,
-				7AE99B2F21CC53AB0092BE7F /* TextFontFormattingTableViewController.swift in Sources */,
 				83FDE79B293564AC006D55FE /* Link.swift in Sources */,
 				D8CE25051E698E2400DAE2E0 /* WMFDatabaseHousekeeper.swift in Sources */,
 				D8CE25071E698E2400DAE2E0 /* PlaceSearch.swift in Sources */,
@@ -11663,7 +11660,7 @@
 				D8EC3E321E9BDA35006712EB /* MWKSearchRedirectMapping.m in Sources */,
 				D8EC3E331E9BDA35006712EB /* MWKImageInfoFetcher+PicOfTheDayInfo.m in Sources */,
 				8382F8CF20D9206000AE5250 /* ImageCollectionViewCell.swift in Sources */,
-                676F7D442B72D8B0006C211F /* EditInteractionFunnel.swift in Sources */,
+				676F7D442B72D8B0006C211F /* EditInteractionFunnel.swift in Sources */,
 				D818D3831ED7254D0076110D /* ColumnarCollectionViewController.swift in Sources */,
 				D8EC3E381E9BDA35006712EB /* WMFScrollViewController.swift in Sources */,
 				83E52BC11F682E3E0045E776 /* LicenseView.swift in Sources */,
@@ -11934,7 +11931,6 @@
 				D8EC3EE01E9BDA35006712EB /* WMFLogFormatter.m in Sources */,
 				009C8EC329071E720056A3AC /* NSString+Range.swift in Sources */,
 				673DE3132BAE2C9400E4D431 /* WKProject+Extensions.swift in Sources */,
-				D818FEBD21E39EE2001A7A00 /* CodemirrorSetupUserScript.swift in Sources */,
 				0042812225E6E841004945B3 /* NSBundle+NYTPhotoViewer.m in Sources */,
 				D8EC3EE11E9BDA35006712EB /* RoundedCornerView.swift in Sources */,
 				7AE1D33B1FCD10B900393471 /* SavedViewController.swift in Sources */,

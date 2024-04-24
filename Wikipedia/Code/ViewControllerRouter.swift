@@ -40,7 +40,7 @@ enum RoutingUserInfoSourceValue: String {
 @objc(WMFViewControllerRouter)
 class ViewControllerRouter: NSObject {
 
-    @objc let router: Router
+    @objc let router: Router 
     unowned let appViewController: WMFAppViewController
     @objc(initWithAppViewController:router:)
     required init(appViewController: WMFAppViewController, router: Router) {

@@ -148,6 +148,17 @@ import CocoaLumberjackSwift
     }
     
     /**
+     * Login with a given username and password. This function is only intended to be used then appetize client is running the application.
+     *
+     * @param username The username to authenticate.
+     * @param password The password for the user
+     */
+    @objc
+    public func loginAppetize(username: String, password: String) {
+        login(username: username, password: password, retypePassword: nil, oathToken: nil, captchaID: nil, captchaWord: nil) { _ in }
+    }
+    
+    /**
      *  Login with the given username and password
      *
      *  @param username The username to authenticate

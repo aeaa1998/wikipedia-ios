@@ -134,18 +134,23 @@ NSString *const WMFLanguageVariantAlertsLibraryVersion = @"WMFLanguageVariantAle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // We are providing credentials then make the login call
-    if ([[AppetizeConfigurationManager shared] getHasCredentials]) {
-        NSString *username = [[AppetizeConfigurationManager shared] getUsername];
-        NSString *password = [[AppetizeConfigurationManager shared] getPassword];
-        
-        // There was a password and username provided
-        if (password && username && password.length && username.length) {
-            [self.dataStore.authenticationManager loginAppetizeWithUsername:username password:password];
-        }
-    }
     
+    // We will execute it one second later to give time to the appetize sdk to be properly setup
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        // We are providing credentials then make the login call
+        if ([[AppetizeConfigurationManager shared] getHasCredentials]) {
+            NSString *username = [[AppetizeConfigurationManager shared] getUsername];
+            NSString *password = [[AppetizeConfigurationManager shared] getPassword];
+            
+            // There was a password and username provided
+            if (password && username && password.length && username.length) {
+                [self.dataStore.authenticationManager loginAppetizeWithUsername:username password:password];
+            }
+        }
+
+    });
+
+        
     self.theme = [[NSUserDefaults standardUserDefaults] themeCompatibleWith:self.traitCollection];
     
 #if UITEST
